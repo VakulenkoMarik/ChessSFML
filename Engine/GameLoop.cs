@@ -4,13 +4,19 @@ namespace Engine;
 
 internal class GameLoop(RenderWindow window)
 {
+    private bool _isStop = false;
+    
     public void Run() {
-        while (IsGameRunning())
+        while (IsGameLoopRunning())
         {
             Input();
             Update();
             Render();
         }
+    }
+    
+    public void Stop() {
+        _isStop = true;
     }
 
     private void Input() {
@@ -25,7 +31,8 @@ internal class GameLoop(RenderWindow window)
         window.Clear(Color.Black);
         window.Display();
     }
-    
-    private bool IsGameRunning()
-        => window.IsOpen;
+
+    private bool IsGameLoopRunning() {
+        return window.IsOpen && !_isStop;
+    }
 }
