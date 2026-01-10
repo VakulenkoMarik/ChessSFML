@@ -2,7 +2,7 @@ using SFML.System;
 
 namespace Engine;
 
-public static class Time
+internal static class Time
 {
     private const int TargetFps = 60;
     private const float UntilUpdateTime = 1f / TargetFps;

@@ -1,9 +1,9 @@
-using SFML.Graphics;
+﻿using SFML.Graphics;
 using SFML.Window;
 
 namespace Engine;
 
-public class Game  : IDisposable
+public class Game : IDisposable
 {
     private readonly RenderWindow _window;
     

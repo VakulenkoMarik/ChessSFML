@@ -2,7 +2,7 @@ using SFML.Graphics;
 
 namespace Engine;
 
-public class GameLoop(RenderWindow window)
+internal class GameLoop(RenderWindow window)
 {
     public void Run() {
         while (IsGameRunning())
