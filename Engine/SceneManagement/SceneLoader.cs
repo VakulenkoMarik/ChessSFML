@@ -1,3 +1,4 @@
+using Engine.Interfaces;
 using SFML.Graphics;
 
 namespace Engine.SceneManagement;
@@ -13,8 +14,8 @@ public static class SceneLoader
         _window = window;
     }
 
-    public static bool TryAddScene(string sceneName) {
-        Scene scene = new(sceneName, _window);
+    public static bool TryAddScene(string sceneName, IInitialSceneScript sceneScript) {
+        Scene scene = new(sceneName, sceneScript, _window);
         return Scenes.TryAdd(sceneName, scene);
     }
     
