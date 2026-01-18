@@ -8,6 +8,8 @@ public static class SceneLoader
     private static readonly Dictionary<string, Scene> Scenes = new();
     private static Scene? _currentScene;
     
+    public static Scene? CurrentScene => _currentScene;
+    
     private static RenderWindow _window = null!;
     
     public static void Init(RenderWindow window) {
