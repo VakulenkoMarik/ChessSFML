@@ -4,5 +4,6 @@ namespace Engine.Interfaces;
 
 public interface IDrawable
 {
-    public Drawable Mesh { get; protected set; }
+    public Drawable? Mesh { get; protected set; }
+    public void Draw() {}
 }

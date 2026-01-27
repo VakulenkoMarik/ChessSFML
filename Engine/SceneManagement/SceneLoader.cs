@@ -9,6 +9,7 @@ public static class SceneLoader
     private static Scene? _currentScene;
     
     public static Scene? CurrentScene => _currentScene;
+    public static RenderWindow Window => _window;
     
     private static RenderWindow _window = null!;
     

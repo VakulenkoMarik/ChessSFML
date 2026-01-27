@@ -43,7 +43,12 @@ internal class GameLoop(RenderWindow window)
         window.Clear(Color.Black);
         
         foreach (var drawable in _drawables) {
-            window.Draw(drawable.Mesh);
+            if (drawable.Mesh != null) {
+                window.Draw(drawable.Mesh);
+                continue;
+            }
+            
+            drawable.Draw();
         }
         
         window.Display();
