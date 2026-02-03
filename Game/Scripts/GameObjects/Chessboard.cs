@@ -12,8 +12,10 @@ namespace Game.Scripts.GameObjects;
 public class Chessboard : GameObject, IDrawable
 {
     private Sprite _background = null!;
-    private readonly Cell[,] _cells;
+    private readonly ChessboardCell[,] _cells;
     private readonly Canvas _canvas;
+
+    private readonly List<ChessboardCell> _activeCells;
     
     public Drawable? Mesh { get; set; }
 
@@ -21,15 +23,32 @@ public class Chessboard : GameObject, IDrawable
         BackgroundInit();
         Mesh = _background;
         
-        _cells = new Cell[8, 8];
+        _cells = new ChessboardCell[8, 8];
         _canvas = new Canvas();
+        _activeCells = new List<ChessboardCell>(64);
         
         CreateCells();
+        DeactivateCells();
+    }
+
+    public void GetMessageFromCell(ChessboardCell cell) {
+        DeactivateCells();
+        
+        _activeCells.Add(cell);
+        cell.ChangeTexture(CellTextureHandler.Instance.GetTextureByType(ChessboardCellState.Selected));
+    }
+
+    private void DeactivateCells() {
+        TGUI.Texture emptyTexture = CellTextureHandler.Instance.GetTextureByType(ChessboardCellState.Empty);
+            
+        foreach (ChessboardCell cell in _activeCells) {
+            cell.ChangeTexture(emptyTexture);
+        }
     }
     
     private void BackgroundInit() {
         _background = new Sprite();
-        string path = PathUtils.Get("Resources\\standardChessboard.png");
+        string path = PathUtils.Get(@"Resources\standardChessboard.png");
         
         _background.Texture = new Texture(path);
 
@@ -58,8 +77,9 @@ public class Chessboard : GameObject, IDrawable
             for (int j = 0; j < _cells.GetLength(1); j++) {
                 TGUI.Vector2f cellPosition = new(currentX, currentY);
                 
-                Cell newCell = new Cell(_canvas, cellPosition);
-                _cells[i, j] = newCell;
+                ChessboardCell newChessboardCell = new ChessboardCell(this, _canvas, cellPosition);
+                newChessboardCell.ChangeTexture(CellTextureHandler.Instance.GetTextureByType(ChessboardCellState.Empty));
+                _cells[i, j] = newChessboardCell;
                 
                 currentX += offsetCoefficient;
             }

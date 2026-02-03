@@ -10,9 +10,7 @@ public class Canvas : IDrawable
     private readonly Gui _gui;
 
     public Canvas() {
-        RenderWindow window = SceneLoader.Window;
-        _gui = new (window);
-        
+        _gui = SceneLoader.Gui;
         SceneLoader.CurrentScene?.AddDrawableObject(this);
     }
 

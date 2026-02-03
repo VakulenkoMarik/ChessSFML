@@ -1,5 +1,6 @@
 using Engine.Interfaces;
 using SFML.Graphics;
+using TGUI;
 
 namespace Engine.SceneManagement;
 
@@ -9,12 +10,16 @@ public static class SceneLoader
     private static Scene? _currentScene;
     
     public static Scene? CurrentScene => _currentScene;
-    public static RenderWindow Window => _window;
     
+    public static RenderWindow Window => _window;
     private static RenderWindow _window = null!;
     
-    public static void Init(RenderWindow window) {
+    public static Gui Gui => _gui;
+    private static Gui _gui = null!;
+    
+    public static void Init(RenderWindow window, Gui gui) {
         _window = window;
+        _gui = gui;
     }
 
     public static bool TryAddScene(string sceneName, IInitialSceneScript sceneScript) {
