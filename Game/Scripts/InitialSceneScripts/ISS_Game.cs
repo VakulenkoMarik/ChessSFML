@@ -1,4 +1,5 @@
 using Engine.Interfaces;
+using Game.Scripts.GameObjects;
 
 namespace Game.Scripts.InitialSceneScripts;
 
