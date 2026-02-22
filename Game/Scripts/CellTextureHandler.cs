@@ -4,33 +4,29 @@ using TGUI;
 
 namespace Game.Scripts;
 
-public class CellTextureHandler
+public static class CellTextureHandler
 {
-    public static CellTextureHandler Instance;
-    
-    private readonly Dictionary<ChessboardCellState, Texture> _cellTextures = new();
+    private static readonly Dictionary<ChessboardCellState, Texture> CellTextures = new();
 
-    public CellTextureHandler() {
-        Instance = this;
-        
+    static CellTextureHandler() {
         InitTextures();
     }
 
-    private void InitTextures() {
-        _cellTextures.Add(ChessboardCellState.Empty,
+    private static void InitTextures() {
+        CellTextures.Add(ChessboardCellState.Empty,
             new Texture(PathUtils.Get(@"Resources\Cell\CellEmpty.png")));
         
-        _cellTextures.Add(ChessboardCellState.Active,
+        CellTextures.Add(ChessboardCellState.Active,
             new Texture(PathUtils.Get(@"Resources\Cell\CellActive.png")));
         
-        _cellTextures.Add(ChessboardCellState.Attacking,
+        CellTextures.Add(ChessboardCellState.Attacking,
             new Texture(PathUtils.Get(@"Resources\Cell\CellAttack.png")));
         
-        _cellTextures.Add(ChessboardCellState.Selected,
+        CellTextures.Add(ChessboardCellState.Selected,
             new Texture(PathUtils.Get(@"Resources\Cell\CellSelected.png")));
     }
 
-    public Texture GetTextureByType(ChessboardCellState type) {
-        return _cellTextures[type];
+    public static Texture GetTextureByType(ChessboardCellState type) {
+        return CellTextures[type];
     }
 }

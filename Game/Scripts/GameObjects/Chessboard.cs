@@ -35,11 +35,11 @@ public class Chessboard : GameObject, IDrawable
         DeactivateCells();
         
         _activeCells.Add(cell);
-        cell.ChangeTexture(CellTextureHandler.Instance.GetTextureByType(ChessboardCellState.Selected));
+        cell.ChangeTexture(CellTextureHandler.GetTextureByType(ChessboardCellState.Selected));
     }
 
     private void DeactivateCells() {
-        TGUI.Texture emptyTexture = CellTextureHandler.Instance.GetTextureByType(ChessboardCellState.Empty);
+        TGUI.Texture emptyTexture = CellTextureHandler.GetTextureByType(ChessboardCellState.Empty);
             
         foreach (ChessboardCell cell in _activeCells) {
             cell.ChangeTexture(emptyTexture);
@@ -78,7 +78,7 @@ public class Chessboard : GameObject, IDrawable
                 TGUI.Vector2f cellPosition = new(currentX, currentY);
                 
                 ChessboardCell newChessboardCell = new ChessboardCell(this, _canvas, cellPosition);
-                newChessboardCell.ChangeTexture(CellTextureHandler.Instance.GetTextureByType(ChessboardCellState.Empty));
+                newChessboardCell.ChangeTexture(CellTextureHandler.GetTextureByType(ChessboardCellState.Empty));
                 _cells[i, j] = newChessboardCell;
                 
                 currentX += offsetCoefficient;

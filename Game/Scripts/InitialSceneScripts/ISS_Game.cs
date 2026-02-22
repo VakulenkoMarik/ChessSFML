@@ -10,7 +10,6 @@ public class ISS_Game : IInitialSceneScript
     private bool _isEndGame;
     
     public void Start() {
-        new CellTextureHandler();
         _chessboard = new();
         _chessboard.Setup();
 
